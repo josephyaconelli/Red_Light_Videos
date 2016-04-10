@@ -2,9 +2,12 @@ import { Template } from 'meteor/templating';
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 import { Tags } from '../api/tags.js';
+import { Session } from 'meteor/session';
 
 import './register.html';
 import './tag.js';
+
+Meteor.subscribe('tags');
 
 var myPassword = createPassword();
 
@@ -18,6 +21,14 @@ Template.register.events({
 			password: passwordVar
 		});		
 		
+		if(Meteor.user){
+			console.log("worked!");
+		}else{
+			console.log("didn't work :(");
+		}
+		
+		//Meteor.call('tags.insertAll', Session.get('blackListTags'));
+		
 		console.log("Form Submitted");
 	}
 });
@@ -29,6 +40,10 @@ Template.register.helpers({
 	
 	tags(){
 		return Tags.find({});
+	},
+	
+	badTags(){
+		return Session.get('blackListTags');
 	}
 });
 

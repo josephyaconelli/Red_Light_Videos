@@ -8,9 +8,12 @@ export const UserInfo = new Mongo.Collection('userinfo');
 if (Meteor.isServer) {
 	// This code only runs on the server
 	Meteor.publish('userInfo', function userInfoPublication() {
-	return UserInfo.find({user: Meteor.userId()}, {blacklist:1});
-  });
+          return UserInfo.find({user: Meteor.userId()}, {blacklist:1});
+        });
+	
+	
 }
+
 
 Meteor.methods({
 	'user.addToBlacklist'(userId, tag){
@@ -33,5 +36,7 @@ Meteor.methods({
 		}
 		
 		UserInfo.upsert( { user: userId }, { $addToSet: { tags: { $each: tags } } });
-	}
-});
+	},
+	
+ });
+
