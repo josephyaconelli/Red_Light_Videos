@@ -1,0 +1,33 @@
+<body>
+	<header>
+		<h1>Red Light Videos</h1>
+	
+		<label class="hide-triggers">
+			<input type="checkbox" />
+			Hide Triggers
+		</label>
+		
+		{{#if currentUser}}
+			{{> logoutButton}}
+		{{else}}
+			{{> loginForm}}
+		{{/if}}
+	
+		<form class="new-video">
+			<input type="text" name="title" placeholder="Title" />
+			<input type="text" name="url" placeholder="Video Url" />
+			<input type="text" name="tags" placeholder="Please comma seperate" />
+			<input type="text" name="thumbnail" placeholder="Thumbnail url" />
+			<input type="submit" value="Submit" />
+		</form>
+		
+	</header>
+	
+	<div>
+		<ul>
+			{{#each videos}}
+				{{> video}}
+			{{/each}}
+		</ul>
+	</div>
+</body>
