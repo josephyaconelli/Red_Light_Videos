@@ -4,10 +4,16 @@ import { Session } from 'meteor/session';
 
 import './tag.html';
 
+var badTags = [];
+
 Template.tag.events({
 	'change .blacklist-tag input'(event){
-		var badTags = Session.get('blackListTags');
-		
+	
+
+		if(!Session.equals('blackListTags', null)){
+			badTags = Session.get('blackListTags');
+		}
+
 		Array.prototype.remove = function(value){
 			var idx = this.indexOf(value);
 			if(idx != -1){

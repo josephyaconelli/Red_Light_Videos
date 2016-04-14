@@ -13,14 +13,22 @@ import './logoutButton.js';
 
 Accounts.onLogin(function(){
 	console.log("logged in as " + Meteor.user().username);
-	Meteor.subscribe('videos', Meteor.user().profile.blacklist, Meteor.userId());
+	console.log("tags i don't like: " + Meteor.user().profile.blacklist);
+	Session.set("blackListTags", Meteor.user().profile.blacklist);
+//	Meteor.subscribe('videos', Meteor.user().profile.blacklist, Meteor.userId());
 	
 });
  
 Template.body.onCreated(function bodyOnCreated(){ 
+	if(Session.get('blackListTags') !== undefined){
+		console.log("blacklist not set yet");
+	}else{
+		Session.set('blackListTags', []);
+	}
+
 	this.state = new ReactiveDict();
-	console.log(Session.get('blacklist'));
-	Meteor.subscribe('videos', null, null);
+	console.log(Session.get('blackListTags'));
+	Meteor.subscribe('videos');
 });
  
 Template.body.helpers({
@@ -29,7 +37,11 @@ Template.body.helpers({
 	  if(instance.state.get('hideTriggers')){
 		  return Videos.find({tags: { $nin: ["boob", "ass"] }}, {sort: { createdAt: -1 } });
 	  }
-	  return Videos.find({}, { sort: { createdAt: -1 }});
+	if(Session.get('blackListTags') !== undefined){
+	  return Videos.find({ tags: { $nin: Session.get('blackListTags') }  }, { sort: { createdAt: -1 }});
+}else{
+	return Videos.find({}, { sort: { createdAt: -1 }});
+}
   },
   
 });

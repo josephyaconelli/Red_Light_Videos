@@ -9,12 +9,8 @@ export const Videos = new Mongo.Collection('videos');
 
 if (Meteor.isServer) {
   // This code only runs on the server
-  Meteor.publish('videos', function videosPublication(blacklist, userId) {
-	if(userId && blacklist != null){
-		return Videos.find({tags: { $nin: blacklist }}, {sort: { createdAt: -1 } })
-	}else{
-		return Videos.find({}, {sort: { createdAt: -1 } })
-	}
+  Meteor.publish('videos', function videosPublication() {
+	return Videos.find({}, {sort: { createdAt: -1 } })
   });
 }
 
