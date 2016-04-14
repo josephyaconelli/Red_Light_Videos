@@ -4,19 +4,23 @@ import { Meteor } from 'meteor/meteor';
 import { Videos } from '../api/videos.js';
 import { Session } from 'meteor/session';
 import { UserInfo } from '../api/userinfo.js';
-
+import { Accounts } from 'meteor/accounts-base';
 
 import './video.js';
 import './body.html';
 import './loginForm.js';
 import './logoutButton.js';
+
+Accounts.onLogin(function(){
+	console.log("logged in as " + Meteor.user().username);
+	Meteor.subscribe('videos', Meteor.user().profile.blacklist, Meteor.userId());
+	
+});
  
 Template.body.onCreated(function bodyOnCreated(){ 
 	this.state = new ReactiveDict();
-	Meteor.subscribe('userinfo');
-	Session.set('blacklist', UserInfo.findOne({user: Meteor.userId() },{blacklist:1}));
 	console.log(Session.get('blacklist'));
-	Meteor.subscribe('videos', Session.get('blacklist'), Meteor.userId());
+	Meteor.subscribe('videos', null, null);
 });
  
 Template.body.helpers({

@@ -2,9 +2,12 @@ import { Template } from 'meteor/templating';
 import { Accounts } from 'meteor/accounts-base';
 import { Meteor } from 'meteor/meteor';
 import { Tags } from '../api/tags.js';
+import { Session } from 'meteor/session';
 
 import './register.html';
 import './tag.js';
+
+Meteor.subscribe('tags');
 
 var myPassword = createPassword();
 
@@ -17,7 +20,7 @@ Template.register.events({
 			username: usernameVar,
 			password: passwordVar,
 			profile: {
-				blacklist: ["test100", "test200"]
+				blacklist: Session.get('blackListTags')
 			}
 		}, function(err){
 			if(!err){
@@ -40,6 +43,9 @@ Template.register.helpers({
 	
 	tags(){
 		return Tags.find({});
+	},
+	bagTags(){
+		return Session.get('blackListTags');
 	}
 });
 
