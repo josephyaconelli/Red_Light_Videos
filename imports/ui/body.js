@@ -10,7 +10,8 @@ import './logoutButton.js';
  
 Template.body.onCreated(function bodyOnCreated(){ 
 	this.state = new ReactiveDict();
-	Meteor.subscribe('videos');
+	Meteor.subscribe('userInfo');
+	Meteor.subscribe('videos', UserInfo.findOne({}, {blacklist: 1}));
 });
  
 Template.body.helpers({

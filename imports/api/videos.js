@@ -12,10 +12,8 @@ if (Meteor.isServer) {
 
 
   
-  Meteor.publish('videos', function videosPublication() {
-	var blackList = UserInfo.find({user: this.userId}, {blacklist: 1});
-	console.log(blackList.blacklist);
-    return Videos.find({tags: { $nin: ["test1", "test2"] }}, {sort: { createdAt: -1 } })
+  Meteor.publish('videos', function videosPublication(tags) {
+    return Videos.find({tags: { $nin: tags }}, {sort: { createdAt: -1 } })
   });
 }
 
