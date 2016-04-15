@@ -9,8 +9,13 @@ export const Videos = new Mongo.Collection('videos');
 
 if (Meteor.isServer) {
   // This code only runs on the server
-  Meteor.publish('videos', function videosPublication() {
-	return Videos.find({}, {sort: { createdAt: -1 } })
+  Meteor.publish('videos', function videosPublication(id) {
+	if(id !== null){
+		return Videos.find({_id: String(id)}, {sort: { createdAt: -1 }, limit: 1 });
+	}else{
+		console.log("video publication sent");
+		return Videos.find({}, {sort: { createdAt: -1 }});
+	}
   });
 }
 

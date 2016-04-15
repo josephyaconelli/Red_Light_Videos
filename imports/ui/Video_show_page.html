@@ -1,0 +1,17 @@
+<template name="Video_show_page">
+	<h1>HELLO!!! I'm A BIG DEAL!!!</h1>
+	<p>>url: {{url}}. type: {{type}}</p>
+	{{#if isReady "currentVideo"}}
+		{{>videoViewer}}
+	{{else}}
+		Loading...
+	{{/if}}
+</template>
+
+
+<template name="videoViewer">
+	<video width="400" controls>
+		<source src="{{url}}" type="video/{{type}}">
+		You're browser doesn't support HTML5 Video. Sorry.
+	</video>
+</template>

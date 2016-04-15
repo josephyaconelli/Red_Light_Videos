@@ -10,6 +10,23 @@ import './video.js';
 import './body.html';
 import './loginForm.js';
 import './logoutButton.js';
+import './App_body.html';
+import './Video_show_page.js';
+//import './videoPlayer.js';
+
+FlowRouter.route('/video/:videoId', {
+	name: 'Video.show',
+	action(params){
+		BlazeLayout.render('App_body', {main: 'videoPlayer'});
+		console.log('video player loaded for: ' + params.videoId);
+	}
+});
+
+Template.videoPlayer.helpers({
+	video(){
+		return Videos.findOne({ _id: FlowRouter.getParam('videoId')  });
+	}
+});
 
 Accounts.onLogin(function(){
 	console.log("logged in as " + Meteor.user().username);
@@ -28,7 +45,7 @@ Template.body.onCreated(function bodyOnCreated(){
 
 	this.state = new ReactiveDict();
 	console.log(Session.get('blackListTags'));
-	Meteor.subscribe('videos');
+	Meteor.subscribe('videos', null);
 });
  
 Template.body.helpers({
@@ -43,6 +60,8 @@ Template.body.helpers({
 	return Videos.find({}, { sort: { createdAt: -1 }});
 }
   },
+
+  
   
 });
 

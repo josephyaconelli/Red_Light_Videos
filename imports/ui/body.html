@@ -1,7 +1,7 @@
 <body>
 	<header>
 		<h1>Red Light Videos</h1>
-	
+		{{> App_body  }}	
 		<label class="hide-triggers">
 			<input type="checkbox" />
 			Hide Triggers
@@ -31,3 +31,24 @@
 		</ul>
 	</div>
 </body>
+
+<template name="videoPlayer">
+	{{#if Template.subscriptionsReady}}
+		{{#if video}}
+			<div>
+				<h1>{{video.title}}</h1>
+	<!--			<video width="400" controls>-->
+					<video src={{video.url}} width=700px height=auto controls> 
+	
+				</video>
+				<p>tags: {{video.tags}}</p>
+				<p>url: {{video.url}}</p>
+				<p><img src="{{video.thumbnail}}" width=400px height=auto /></p>
+			</div>
+		{{else}}
+			<div>404: Not found</div>
+		{{/if}}
+	{{else}}
+		<div>Loading...</div>
+	{{/if}}
+</template>
