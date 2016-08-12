@@ -12,15 +12,103 @@ import './loginForm.js';
 import './logoutButton.js';
 import './App_body.html';
 import './Video_show_page.js';
-//import './videoPlayer.js';
+import './registerForm.js';
+import './videoPlayer.js';
+import './featured.js';
+
+
+
+var options = {
+  keepHistory: 1000 * 60 * 5,
+  localSearch: true
+};
+var fields = ['title'];
+
+VideoSearch = new SearchSource('videos', fields, options);
+
+
+
+
+Template.searchResult.helpers({
+  getVideos: function() {
+    return VideoSearch.getData({
+      transform: function(matchText, regExp) {
+        return matchText.replace(regExp, "<b>$&</b>")
+      },
+      sort: {createdAt: -1}
+    });
+  },
+  
+  isLoading: function() {
+    return VideoSearch.getStatus().loading;
+  }
+});
+
+
 
 FlowRouter.route('/video/:videoId', {
 	name: 'Video.show',
 	action(params){
 		BlazeLayout.render('App_body', {main: 'videoPlayer'});
-		console.log('video player loaded for: ' + params.videoId);
+		console.log('video player loaded for: ' + params.videoId); 	
+	},
+	triggersEnter: [openModal]
+});
+
+function openModal(context, redirect, stop){
+	console.log("trigger fired!: " + context.path.indexOf("register"));
+	if(context.path.indexOf("register") == 1){
+		Template.registerForm.rendered = function(){
+			$('#registerModal').modal('show');
+			console.log("Modal rendered...");
+		}
+	}else if(context.path.indexOf("video") != -1){
+		var video = context.params.videoId;
+		
+		console.log("trigger called for " + video);
+		console.log(context);
+		Template.videoPlayer.rendered = function(){
+				$('#videoModal').modal('show');
+		}
+	}
+	
+}
+
+
+FlowRouter.route('/register', {
+	name: 'Register.show',
+	action(params){
+		BlazeLayout.render('App_body', {main: 'registerForm'});
+		console.log('register form loaded');
+	},
+	triggersEnter: [openModal]
+});
+
+FlowRouter.route('/add', {
+	name: 'Video.show',
+	action(params){
+		BlazeLayout.render('App_body', {main: 'addVideo'});
+		console.log('add video loaded');
 	}
 });
+
+FlowRouter.route('/', {
+	name: 'Video.show',
+	action(params){
+		BlazeLayout.render('App_body', {main: 'videoThumbs'});
+		console.log('home page loaded');
+	}
+});
+
+
+Template.searchBox.events({
+  "keyup #search-box": _.throttle(function(e) {
+    var text = $(e.target).val().trim();
+    VideoSearch.search(text);
+  }, 200)
+});
+
+
 
 Template.videoPlayer.helpers({
 	video(){
@@ -64,6 +152,8 @@ Template.body.helpers({
   
   
 });
+
+
 
 Template.body.events({
 	'submit .new-video'(event){

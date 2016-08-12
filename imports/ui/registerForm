@@ -1,0 +1,18 @@
+	<template name="registerForm">
+		<div class="row">
+		{{#if currentUser}}
+			{{> logoutButton}}
+		{{else}}
+			{{> loginForm}}
+		{{/if}}
+		</div>
+		<div class="input-group">
+			<form class="new-video">
+				<input type="text" class="form-control" name="title" placeholder="Title" />
+				<input type="text" class="form-control" name="url" placeholder="Video Url" />
+				<input type="text" class="form-control" name="tags" placeholder="Please comma seperate" />
+				<input type="text" class="form-control" name="thumbnail" placeholder="Thumbnail url" />
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+	</template>

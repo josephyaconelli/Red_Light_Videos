@@ -145,7 +145,11 @@ function generatePassword(){
 	var num2 = Math.floor(Math.random()*(10));
 	var num3 = Math.floor(Math.random()*(10));
 	
-	var password = color + veggy + animal + num1 + "" + num2 + "" + num3;
+	var password = capFirstLetter(color) + capFirstLetter(veggy) + capFirstLetter(animal) + num1 + "" + num2 + "" + num3;
 	
 	return password;
+}
+
+function capFirstLetter(string){
+	return string.charAt(0).toUpperCase() + string.slice(1);
 }

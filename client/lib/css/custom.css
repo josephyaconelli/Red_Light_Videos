@@ -1,0 +1,233 @@
+body{
+	background: #fff;
+	padding-right: 0px !important;
+}
+
+html {
+    overflow-y:scroll !important;
+}
+
+
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a90329+0,8f0222+44,6d0019+100;Brown+Red+3D */
+.gradient-background{
+	
+	background-image: url(/images/background-pattern-white.png), linear-gradient(to bottom, #dddddd 10%, #ffffff 100%);
+	background-position: left top, left, top;
+	background-repeat: repeat, no-repeat;
+	
+}
+
+.gradient-background-reverse{
+	background: #6d0019; /* Old browsers */
+	background: -moz-linear-gradient(top,  #6d0019 0%, #8f0222 44%, #a90329 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top,  #6d0019 0%,#8f0222 44%,#a90329 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom,  #6d0019 0%,#8f0222 44%,#a90329 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#	a90329', endColorstr='#6d0019',GradientType=0 ); /* IE6-9 */
+}
+
+.ad-sidebar{
+	width: 200px;
+}
+
+/*.navbar-nav > li > a, .navbar-brand {
+    padding-top:4px !important; 
+    padding-bottom:0 !important;
+    height: 75px;
+}
+.navbar {min-height:75px !important;}
+*/
+
+
+.bottom-title{
+	color: #555;
+}
+
+.bottom-title:hover{
+	color: #555;
+}
+
+.navbar-top {
+	background: linear-gradient(to bottom, #d80000, 0%, #ed1c24 15%, #ed1c24 85%, #d80000 100%);
+	border-color: rgba(50,50,50,0);
+	border: 0px;
+	padding: 0px;
+	margin: 0px;
+}
+
+.navbar-brand {
+  padding: 0px;
+  background: #fff;
+}
+.navbar-brand>img:hover{
+	background-color: #eee;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 4px;
+  width: auto;
+}
+
+.btn-search{
+	background-color: rgba(255,255,255,0);
+	color: #ffffff;
+	border: solid 1px #ffffff;
+}
+
+.btn-search:hover{
+	background-color: rgba(255,255,255,0);
+	color: #d0d0d0;
+	border-color: #d0d0d0;
+}
+
+.btn-login{
+	background-color: #eee !important;
+	color: #333 !important;
+	border-radius: 0px 0px;
+}
+.btn-login:hover{
+	background-color: #fff !important;
+}
+
+.btn-login:active{
+	background-color: #fff !important;
+}
+
+.text-signin{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	font-weight: bold;
+}
+
+.ellipses {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+a.video-title:link, .video-title:visited, .video-title:active{
+	text-decoration: none !important;
+	color: #333;
+}
+
+a.video-title:hover{
+	color: #a90329 !important;
+}
+
+
+.box-shadow-sm{
+	box-shadow: 0 0 5px black;
+}
+.box-shadow-md{
+	box-shadow: 0 0 15px black;
+}
+
+.box-shadow-lg{
+	box-shadow: 0 0 30px black;
+}
+
+.overflow-hidden{
+	overflow: hidden !important;
+}
+
+.videoPlayer{
+	width: 700px;
+	height: auto;
+	margin: auto auto;
+	text-align: center;
+}
+.spacer-lg{
+	margin-top: 90px;
+}
+
+.spacer-md{
+	margin-top: 60px;
+}
+
+.spacer-sm{
+	margin-top: 30px;
+}
+
+.inverse{
+	background-color: #333 !important;
+	border-color: #101010 !important;
+	color: #hhh;
+}
+
+.video-thumbnail{
+		height: 100px;
+}
+
+.video-thumbnail-bg{
+	background-size: cover;
+	background-position: center center;
+}
+
+.border-sm{
+	border-width: 1px;
+	border-color: #ddd;
+}
+
+.featuredItem {
+  width: auto !important;
+  background-size: cover;
+  background-position: center center;
+  height: 500px !important;
+  max-height: 500px !important;
+}
+
+/* Extra Small Devices, */
+@media only screen and (min-width : 480px) {
+	.video-thumbnail{
+		height: 150px;
+	}
+	/*
+	.dropdown-input{
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		overflow: hidden;
+	}
+	*/
+}
+
+/* Small Devices, Phones */
+@media only screen and (min-width : 768px) {
+	.modal-dialog-video{
+		width: 750px;
+	}
+	
+	.video-thumbnail{
+		height: 200px;
+	}
+	/*
+	.dropdown-input{
+		width: 95%;
+		margin-left: auto;
+		margin-right: auto;
+		overflow: hidden;
+	}*/
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+	.modal-dialog-video{
+		width: 750px;
+	}
+	
+	.video-thumbnail{
+		height: 150px;
+	}
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+	.modal-dialog-video{
+		width: 750px;
+	}
+	
+	.video-thumbnail{
+		height: 200px;
+	}
+}
+}

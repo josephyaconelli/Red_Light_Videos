@@ -1,11 +1,40 @@
 <template name="register">
 	<form>
-		<span>Here's your password: {{password}}. Make sure you save that!</span>
-		<p>Check tags you DON'T want to see:</p>
-		{{#each tags}}
-			{{> tag}}
-		{{/each}}
-		<p>Tags you don't like: {{bagTags}}</p>
-		<input type="submit" value="Create Account" />
+		{{ #if currentUser }}
+		{{ else }}
+		<div class="jumbotron register-view">
+			<div class="container register-view">
+				<span>
+					<h2>
+						<small>
+							<span class="pull-left register-view">Here's your password...</span>
+						</small>
+						<br/>
+						<center class="register-view">{{password}}</center>
+						<br/>
+						<small>
+							<span class="pull-right register-view">...Make sure you save that</span>
+						</small>
+					</h2>
+				</span>
+			</div>
+		</div>
+		{{/if}}
+		<div class="row vdivide register-view">
+			<div class="page-header register-view">
+				<p>
+					<h3>Check tags you DON'T want to see:</h3>
+				</p>
+			</div>
+
+			<div class="col-md-12 register-view">
+				{{#each tags}}
+					{{> tag}}
+				{{/each}}
+			</div>
+
+		</div>
+		
+		<input class="btn btn-success register-view" type="submit" value="Create Account" />
 	</form>
 </template>

@@ -21,6 +21,7 @@ Template.Video_show_page.onCreated(function(){
 	self.autorun(function(){
 		var videoId = FlowRouter.getParam('videoId');
 		self.subscribe('videos', postId);
+		//Meteor.call("user.setTagRating", {});
 	});
 });
 

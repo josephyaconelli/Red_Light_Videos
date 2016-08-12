@@ -1,0 +1,8 @@
+{
+"galaxy.meteor.com": {
+	"env": {
+		"MONGO_URL": "mongodb://redlightvideosJosephYaconelli:#analMouth1@ds011331.mlab.com:11331/red_light_videos",
+		"ROOT_URL": "http://www.redlightvideos.com/"
+		}
+	}
+}

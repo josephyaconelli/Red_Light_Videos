@@ -1,10 +1,38 @@
 <template name="video">
-	<div>
-		<a href="{{_id}}">
-			<h3>{{title}}</h3>
-			<img src="{{thumbnail}}" width=200px height=auto />
-			<br/><button>watch</button>
-		</a>
-		<button class="delete">&times;</button>
+	<div class="col-md-4 col-sm-6 col-xs-6">
+		<div class="panel border-sm video-thumbnail-bg" data-toggle="modal" style="background-image: url('{{thumbnail}}')" data-target="#videoModal{{_id}}" >
+			<a href="/video/{{_id}}" class="video-title">
+				<div class="panel-body video-thumbnail">
+					<a href="/video/{{_id}}">
+						<!--<img class="center-block video-thumbnail" src="{{thumbnail}}"/>-->
+					</a>
+				</div>
+			
+				<!--<div class="panel-heading">
+				</div>-->
+			
+				<div class="panel-footer ellipses" style="text-wrap: none;">
+					<a href="/video/{{_id}}" class="video-title ellipses" style="text-wrap: none; display: inline;">
+						<!--<button class="btn btn-success" style="vertical-align: text-bottom;">
+							<span class="glyphicon glyphicon-play"></span>
+							&nbsp;watch
+						</button>-->
+						
+						<h3 class="video-title ellipses" data-toggle="tooltip" data-placement="left" data-container="body" title="{{title}}" style="display: inline !important; text-wrap: none !important;">
+							{{title}}
+						</h3>
+						
+					</a>
+					<!--
+					<button class="delete btn btn-danger">
+						<span class="glyphicon glyphicon-remove"></span>
+					</button>
+					-->
+				</div>
+			</a>
+		</div>
 	</div>
+	
+
+	
 </template>

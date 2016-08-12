@@ -33,5 +33,19 @@ Meteor.methods({
 		}
 		
 		UserInfo.upsert( { user: userId }, { $addToSet: { tags: { $each: tags } } });
+	},
+	'user.setTagRating'(userId, tagRatingPair){
+		check(userId, String);
+		check(tagRatingPair, Array);
+		
+		if(! Meteor.userId()){
+				throw new Meteor.Error("not-authorized");
+		}
+		
+		UserInfo.upsert( {user: userId}, { $push: { ratings: tagRatingPair } } );
+		
+	},
+	'user.getTagRatings'(userId){
+		
 	}
 });

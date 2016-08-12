@@ -1,4 +1,8 @@
 <template name="logoutButton">
-	<p>You're logged in</p>
-	<p><a href="#" class="logout">Logout</a></p>
+	<div style="padding-top: 19px;">
+		<span style="vertical-align: middle;">
+			<span style="color: #505050;">Logged in as </span><span style="color: #bbb; font-weight: bold;">{{ user }}</span>
+		</span>
+		<button href="#" type="button" class="logout btn btn-search" style="vertical-align: text;">Logout</button>
+	</div>
 </template>

@@ -1,0 +1,31 @@
+<template name="videoPlayer">
+	<div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+
+		<div class="modal-dialog modal-dialog-video video-view" id="videoModal-content">
+			<div class="modal-content video-view">
+				<div class="modal-header video-view">
+					<button type="button" class="close"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+					</button>
+					<h4 class="modal-title video-view" id="myModalLabel">{{title}}</h4>
+				</div>
+				<div class="modal-body video-view">
+					{{#if Template.subscriptionsReady}} {{#if video}}
+					<div>
+						<div class="embed-responsive embed-responsive-16by9 video-view">
+							<video src={{video.url}} class="embed-responsive-item video-view" controls>Sorry. Your browser doesn't support HTML5 videos.</video>
+						</div>
+						<br/>
+						<div class="well video-view">
+							<span class="glyphicon glyphicon-tags" aria-hidden="true"></span>&nbsp;&nbsp;{{video.tags}}
+						</div>
+					</div>
+					{{else}}
+					<div>404: Not found</div>
+					{{/if}} {{else}}
+					<div>Loading...</div>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

@@ -1,0 +1,16 @@
+<template name="modalView">
+	<div class="modal fade" id="videoModal" style="display: block;" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-video">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" onClick="var obj = { Title: 'Home', Url: '/' }; history.pushState(obj, obj.Title, obj.Url);"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">{{title}}</h4>
+        </div>
+        <div class="modal-body">
+          {{ > videoPlayer }}
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

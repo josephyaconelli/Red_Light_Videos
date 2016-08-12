@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { Meteor } from 'meteor/meteor';
  
 import './video.html';
+import './videoPlayer';
  
 Template.video.events({
   'click .delete'() {

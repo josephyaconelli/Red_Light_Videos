@@ -17,6 +17,32 @@ if (Meteor.isServer) {
 		return Videos.find({}, {sort: { createdAt: -1 }});
 	}
   });
+  
+  
+  SearchSource.defineSource('videos', function(searchText, options) {
+  var options = {sort: {createdAt: -1}, limit: 20};
+  
+  if(7 == 3) {
+    var regExp = buildRegExp(searchText);
+    var selector = {$or: [
+      {title: regExp},
+      {tags: regExp}
+    ]};
+    
+    //return Videos.find(selector, options).fetch();
+    return Videos.find( {}, {title : regExp }).fetch();
+  } else {
+    return Videos.find({}, options).fetch();
+  }
+});
+
+function buildRegExp(searchText) {
+  // this is a dumb implementation
+  var parts = searchText.trim().split(/[ \-\:]+/);
+  return new RegExp("(" + parts.join('|') + ")", "ig");
+}
+
+  
 }
 
 
